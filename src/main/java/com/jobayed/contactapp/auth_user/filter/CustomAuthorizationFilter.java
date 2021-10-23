@@ -1,8 +1,8 @@
-package com.jobayed.bloggingapp.auth_user.filter;
+package com.jobayed.contactapp.auth_user.filter;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jobayed.bloggingapp.auth_user.utils.JwtUtils;
+import com.jobayed.contactapp.auth_user.utils.JwtUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,8 +31,7 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         if(request.getServletPath().equals("/login") ||
-                request.getServletPath().equals("/token/refresh") ||
-                request.getServletPath().equals("/posts")
+                request.getServletPath().equals("/token/refresh")
         )
         {
             filterChain.doFilter(request,response);

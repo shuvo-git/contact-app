@@ -1,13 +1,10 @@
 package com.jobayed.contactapp.contact.resources;
 
-import com.jobayed.contactapp.contact.entities.Contact;
+import com.jobayed.contactapp.contact.domain.Contact;
 import com.jobayed.contactapp.contact.errors.ErrorModel;
 import com.jobayed.contactapp.contact.errors.ErrorResponse;
-import com.jobayed.contactapp.contact.repos.ContactRepo;
 import com.jobayed.contactapp.contact.services.ContactService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;

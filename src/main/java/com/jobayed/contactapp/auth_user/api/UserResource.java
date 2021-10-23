@@ -1,11 +1,11 @@
-package com.jobayed.bloggingapp.auth_user.api;
+package com.jobayed.contactapp.auth_user.api;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jobayed.bloggingapp.auth_user.domain.Role;
-import com.jobayed.bloggingapp.auth_user.domain.User;
-import com.jobayed.bloggingapp.auth_user.service.UserService;
-import com.jobayed.bloggingapp.auth_user.utils.JwtUtils;
+import com.jobayed.contactapp.auth_user.domain.Role;
+import com.jobayed.contactapp.auth_user.domain.User;
+import com.jobayed.contactapp.auth_user.service.UserService;
+import com.jobayed.contactapp.auth_user.utils.JwtUtils;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +27,8 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Slf4j
 @RestController @RequiredArgsConstructor
-public class UserResource {
+public class UserResource
+{
     private final UserService userService;
     private final JwtUtils jwtUtils;
 
@@ -49,6 +50,9 @@ public class UserResource {
         userService.assignRole(form.getUsername(),form.getRolename());
         return ResponseEntity.ok().build();
     }
+
+    //@PostMapping("/login")
+
 
     @GetMapping("/token/refresh")
     public void getRefreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {

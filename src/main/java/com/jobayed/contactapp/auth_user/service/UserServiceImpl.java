@@ -1,9 +1,9 @@
-package com.jobayed.bloggingapp.auth_user.service;
+package com.jobayed.contactapp.auth_user.service;
 
-import com.jobayed.bloggingapp.auth_user.domain.Role;
-import com.jobayed.bloggingapp.auth_user.domain.User;
-import com.jobayed.bloggingapp.auth_user.repo.RoleRepo;
-import com.jobayed.bloggingapp.auth_user.repo.UserRepo;
+import com.jobayed.contactapp.auth_user.domain.Role;
+import com.jobayed.contactapp.auth_user.domain.User;
+import com.jobayed.contactapp.auth_user.repo.RoleRepo;
+import com.jobayed.contactapp.auth_user.repo.UserRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

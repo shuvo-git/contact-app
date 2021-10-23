@@ -1,8 +1,8 @@
-package com.jobayed.bloggingapp.auth_user.config;
+package com.jobayed.contactapp.auth_user.config;
 
-import com.jobayed.bloggingapp.auth_user.filter.CustomAuthenticationFilter;
-import com.jobayed.bloggingapp.auth_user.filter.CustomAuthorizationFilter;
-import com.jobayed.bloggingapp.auth_user.utils.JwtUtils;
+import com.jobayed.contactapp.auth_user.filter.CustomAuthenticationFilter;
+import com.jobayed.contactapp.auth_user.filter.CustomAuthorizationFilter;
+import com.jobayed.contactapp.auth_user.utils.JwtUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -39,9 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         cAuthFilter.setFilterProcessesUrl("/login");
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers("/login","/token/refresh/**","/posts").permitAll();
-        http.authorizeRequests().antMatchers(GET,"/user/**").hasAnyAuthority("ROLE_BLOGGER");
-        http.authorizeRequests().antMatchers(POST,"/user/store/**").hasAnyAuthority("ROLE_ADMIN");
+        http.authorizeRequests().antMatchers("/login","/token/refresh/**").permitAll();
+        http.authorizeRequests().antMatchers("/user/**").hasAnyAuthority("ROLE_USER");
         http.authorizeRequests().anyRequest().authenticated();
         //http.authorizeRequests().anyRequest().permitAll();
         http.addFilter(cAuthFilter);

@@ -1,9 +1,11 @@
-package com.jobayed.bloggingapp.auth_user.filter;
+package com.jobayed.contactapp.auth_user.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jobayed.bloggingapp.auth_user.utils.JwtUtils;
+import com.jobayed.contactapp.auth_user.utils.JwtUtils;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -27,6 +29,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager authenticationManager;
     private final JwtUtils jwtUtils;
+    private boolean postOnly = true;
 
     public CustomAuthenticationFilter(AuthenticationManager authenticationManager,JwtUtils jwtUtils)
     {
@@ -36,13 +39,25 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        log.info("Username is {}",username);
+        if (this.postOnly && !request.getMethod().equals("POST")) {
+            throw new AuthenticationServiceException("Authentication method not supported: " + request.getMethod());
+        } else {
+            try {
+                UsernamePassword authRequest = new ObjectMapper()
+                        .readValue(request.getInputStream(), UsernamePassword.class);
+                String username = authRequest.getUsername();
+                String password = authRequest.getPassword();
+                log.info("Username is {}", username);
 
-        UsernamePasswordAuthenticationToken authenticationToken
-                =new UsernamePasswordAuthenticationToken(username,password);
-        return authenticationManager.authenticate(authenticationToken);
+                UsernamePasswordAuthenticationToken authenticationToken
+                        = new UsernamePasswordAuthenticationToken(username, password);
+                return authenticationManager.authenticate(authenticationToken);
+            } catch (IOException e) {
+                log.error("Unreadable Value Exception: " + e.getMessage());
+                return null;
+
+            }
+        }
     }
 
     @Override
@@ -69,4 +84,12 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         response.setContentType(APPLICATION_JSON_VALUE);
         new ObjectMapper().writeValue(response.getOutputStream(),tokens);
     }
+
+    @Data
+    static class UsernamePassword{
+        private String username;
+        private String password;
+    }
+
+
 }

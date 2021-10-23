@@ -1,7 +1,7 @@
-package com.jobayed.bloggingapp.auth_user.service;
+package com.jobayed.contactapp.auth_user.service;
 
-import com.jobayed.bloggingapp.auth_user.domain.Role;
-import com.jobayed.bloggingapp.auth_user.domain.User;
+import com.jobayed.contactapp.auth_user.domain.Role;
+import com.jobayed.contactapp.auth_user.domain.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

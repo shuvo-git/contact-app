@@ -1,4 +1,4 @@
-package com.jobayed.bloggingapp.auth_user.utils;
+package com.jobayed.contactapp.auth_user.utils;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;

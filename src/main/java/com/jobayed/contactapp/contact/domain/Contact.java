@@ -1,4 +1,4 @@
-package com.jobayed.contactapp.contact.entities;
+package com.jobayed.contactapp.contact.domain;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;

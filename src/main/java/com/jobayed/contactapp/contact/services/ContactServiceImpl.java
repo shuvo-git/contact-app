@@ -1,6 +1,6 @@
 package com.jobayed.contactapp.contact.services;
 
-import com.jobayed.contactapp.contact.entities.Contact;
+import com.jobayed.contactapp.contact.domain.Contact;
 import com.jobayed.contactapp.contact.repos.ContactRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
